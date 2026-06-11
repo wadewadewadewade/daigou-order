@@ -46,7 +46,7 @@ export default function Home() {
         name: order.name,
         product: order.product,
         quantity: order.quantity,
-        imageUrls: order.imageUrls.join(","),
+        imageUrls: order.imageUrls,
         productUrl: order.productUrl,
       };
       console.log("送出資料：", payload);
