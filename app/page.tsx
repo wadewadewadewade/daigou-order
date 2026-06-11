@@ -53,7 +53,7 @@ export default function Home() {
       const res = await fetch(process.env.NEXT_PUBLIC_APPS_SCRIPT_URL!, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(payload),
       });
       console.log("Apps Script 回應：", res.status, res.type);
