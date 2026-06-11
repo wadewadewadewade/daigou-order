@@ -24,10 +24,17 @@ export default function StepLayout({
   skipLabel,
 }: Props) {
   return (
-    <div className="w-full max-w-lg mx-auto space-y-8">
+    <div className="w-full max-w-lg mx-auto space-y-10">
       <div>
-        <h2 className="text-4xl font-bold text-gray-900 leading-tight mb-2">{question}</h2>
-        {hint && <p className="text-gray-400 text-lg">{hint}</p>}
+        <h2
+          className="font-bold leading-tight mb-3"
+          style={{ fontSize: "48px", fontWeight: 700, color: "#0A0A0A" }}
+        >
+          {question}
+        </h2>
+        {hint && (
+          <p style={{ fontSize: "15px", color: "#3B3B3B" }}>{hint}</p>
+        )}
       </div>
 
       <div>{children}</div>
@@ -36,7 +43,20 @@ export default function StepLayout({
         {onPrev && (
           <button
             onClick={onPrev}
-            className="flex-1 py-4 rounded-2xl border-2 border-gray-200 text-gray-600 font-semibold text-lg hover:bg-gray-50 transition-colors"
+            style={{
+              flex: 1,
+              padding: "14px 0",
+              borderRadius: "8px",
+              border: "1.5px solid #0A0A0A",
+              background: "#FFFFFF",
+              color: "#0A0A0A",
+              fontWeight: 600,
+              fontSize: "15px",
+              cursor: "pointer",
+              transition: "transform 0.15s ease",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
             上一步
           </button>
@@ -44,7 +64,20 @@ export default function StepLayout({
         {skipLabel && (
           <button
             onClick={onNext}
-            className="flex-1 py-4 rounded-2xl border-2 border-gray-200 text-gray-400 font-semibold text-lg hover:bg-gray-50 transition-colors"
+            style={{
+              flex: 1,
+              padding: "14px 0",
+              borderRadius: "8px",
+              border: "1.5px solid #0A0A0A",
+              background: "#FFFFFF",
+              color: "#3B3B3B",
+              fontWeight: 600,
+              fontSize: "15px",
+              cursor: "pointer",
+              transition: "transform 0.15s ease",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
             {skipLabel}
           </button>
@@ -52,7 +85,20 @@ export default function StepLayout({
         <button
           onClick={onNext}
           disabled={nextDisabled}
-          className="flex-[2] py-4 rounded-2xl bg-indigo-500 text-white font-semibold text-lg hover:bg-indigo-600 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          style={{
+            flex: 2,
+            padding: "14px 0",
+            borderRadius: "8px",
+            border: "none",
+            background: nextDisabled ? "#D1D5DB" : "#0A0A0A",
+            color: "#FFFFFF",
+            fontWeight: 600,
+            fontSize: "15px",
+            cursor: nextDisabled ? "not-allowed" : "pointer",
+            transition: "transform 0.15s ease, background 0.2s ease",
+          }}
+          onMouseEnter={(e) => { if (!nextDisabled) e.currentTarget.style.transform = "scale(1.02)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
         >
           {nextLabel}
         </button>
