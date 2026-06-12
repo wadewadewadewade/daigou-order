@@ -64,9 +64,6 @@ export default function Landing({ onStart }: Props) {
 
         {/* hero */}
         <section style={{ padding: "72px 0 56px", textAlign: "center" }}>
-          <div style={{ display: "inline-block", background: "#FFE14D", border: "2px solid #111111", borderRadius: "99px", padding: "5px 16px", fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", marginBottom: "20px", boxShadow: "2px 2px 0px #111" }}>
-            快閃代購 · 需求登記
-          </div>
           <h1 style={{ fontSize: "clamp(42px, 9vw, 72px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.03em", marginBottom: "24px", transform: "rotate(-1.5deg)", display: "inline-block" }}>
             代購需求登記
           </h1>
