@@ -53,40 +53,38 @@ export default function StepImages({ value, onChange, onNext, onPrev }: Props) {
           onDragLeave={() => setDragOver(false)}
           onDrop={(e) => { e.preventDefault(); setDragOver(false); if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); }}
           style={{
-            border: `2px dashed #111111`,
-            borderRadius: "6px",
+            border: "2px dashed #c8c5c0",
+            borderRadius: "0",
             padding: "32px 24px",
             textAlign: "center",
             cursor: uploading ? "default" : "pointer",
-            background: dragOver ? "#FFE14D" : "#FFF9F0",
-            boxShadow: dragOver ? "3px 3px 0px #111" : "none",
-            transition: "background 0.15s, box-shadow 0.15s",
+            background: dragOver ? "#ddd9d0" : "#EDE8DF",
+            transition: "background 0.15s",
           }}
         >
           {uploading ? (
-            <p style={{ fontSize: "14px", fontWeight: 700 }}>上傳中，請稍候…</p>
+            <p style={{ fontSize: "13px", fontWeight: 700, color: "#777" }}>上傳中，請稍候…</p>
           ) : (
             <>
-              <p style={{ fontSize: "28px", marginBottom: "8px" }}>📎</p>
-              <p style={{ fontSize: "14px", fontWeight: 700 }}>點擊或拖曳圖片到這裡</p>
-              <p style={{ fontSize: "12px", color: "#555", marginTop: "4px" }}>支援 JPG、PNG、HEIC，可多張</p>
+              <p style={{ fontSize: "13px", fontWeight: 700, marginBottom: "6px" }}>點擊或拖曳圖片到這裡</p>
+              <p style={{ fontSize: "12px", color: "#777777" }}>支援 JPG、PNG、HEIC，可多張</p>
             </>
           )}
         </div>
 
         <input ref={inputRef} type="file" accept="image/*" multiple style={{ display: "none" }} onChange={(e) => e.target.files && handleFiles(e.target.files)} />
 
-        {error && <p style={{ fontSize: "13px", color: "#DC2626", fontWeight: 600 }}>{error}</p>}
+        {error && <p style={{ fontSize: "12px", color: "#cc3333", fontWeight: 700 }}>{error}</p>}
 
         {value.length > 0 && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: "8px" }}>
             {value.map((url, i) => (
-              <div key={i} style={{ position: "relative", borderRadius: "4px", overflow: "hidden", aspectRatio: "1", border: "2px solid #111111", boxShadow: "2px 2px 0px #111" }}>
+              <div key={i} style={{ position: "relative", borderRadius: "0", overflow: "hidden", aspectRatio: "1", border: "2px solid #2c2c2c", boxShadow: "2px 2px 0 #2c2c2c" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <button
                   onClick={() => removeImage(i)}
-                  style={{ position: "absolute", inset: 0, background: "rgba(255,225,77,0.88)", color: "#111", border: "none", cursor: "pointer", fontSize: "16px", fontWeight: 800, opacity: 0, transition: "opacity 0.15s", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "inherit" }}
+                  style={{ position: "absolute", inset: 0, background: "rgba(237,232,223,0.85)", color: "#1a1a1a", border: "none", cursor: "pointer", fontSize: "14px", fontWeight: 800, opacity: 0, transition: "opacity 0.15s", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "inherit" }}
                   onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
                   onMouseLeave={(e) => (e.currentTarget.style.opacity = "0")}
                 >✕</button>

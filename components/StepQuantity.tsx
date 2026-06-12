@@ -11,13 +11,13 @@ interface Props {
 }
 
 const adjBtn: React.CSSProperties = {
-  width: "44px", height: "44px", borderRadius: "4px",
-  border: "2px solid #111111", background: "#FFE14D",
+  width: "44px", height: "44px", borderRadius: "0",
+  border: "2px solid #2c2c2c", background: "#EDE8DF",
   fontSize: "20px", fontWeight: 800, cursor: "pointer",
   display: "flex", alignItems: "center", justifyContent: "center",
-  flexShrink: 0, boxShadow: "2px 2px 0px #111",
-  transition: "transform 0.12s, box-shadow 0.12s",
-  fontFamily: "inherit",
+  flexShrink: 0, boxShadow: "2px 2px 0 #2c2c2c",
+  transition: "transform 0.1s, box-shadow 0.1s",
+  fontFamily: "inherit", color: "#1a1a1a",
 };
 
 export default function StepQuantity({ value, onChange, onNext, onPrev }: Props) {
@@ -35,24 +35,22 @@ export default function StepQuantity({ value, onChange, onNext, onPrev }: Props)
     <StepLayout question="要買幾個？" hint="請輸入正整數，我會照這個數量統計。" onNext={handleNext} onPrev={onPrev} nextDisabled={value < 1}>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <button
-          onClick={() => onChange(Math.max(1, value - 1))}
-          style={adjBtn}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = "translate(-2px,-2px)"; e.currentTarget.style.boxShadow = "4px 4px 0px #111"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "translate(0,0)"; e.currentTarget.style.boxShadow = "2px 2px 0px #111"; }}
+          onClick={() => onChange(Math.max(1, value - 1))} style={adjBtn}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = "translate(2px,2px)"; e.currentTarget.style.boxShadow = "0px 0px 0 #2c2c2c"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = "translate(0,0)"; e.currentTarget.style.boxShadow = "2px 2px 0 #2c2c2c"; }}
         >−</button>
         <input
           ref={ref} type="number" min={1} value={value}
           onChange={(e) => handleChange(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleNext()}
-          style={{ width: "88px", textAlign: "center", padding: "10px", fontSize: "24px", fontWeight: 800, borderRadius: "4px", border: "2px solid #111111", outline: "none", background: "#FFF9F0", color: "#111111", fontFamily: "inherit", transition: "box-shadow 0.15s" }}
-          onFocus={(e) => (e.currentTarget.style.boxShadow = "3px 3px 0px #111")}
+          style={{ width: "88px", textAlign: "center", padding: "10px", fontSize: "24px", fontWeight: 800, borderRadius: "0", border: "2px solid #2c2c2c", outline: "none", background: "#EDE8DF", color: "#1a1a1a", fontFamily: "inherit", transition: "box-shadow 0.1s" }}
+          onFocus={(e) => (e.currentTarget.style.boxShadow = "3px 3px 0 #2c2c2c")}
           onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
         />
         <button
-          onClick={() => onChange(value + 1)}
-          style={adjBtn}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = "translate(-2px,-2px)"; e.currentTarget.style.boxShadow = "4px 4px 0px #111"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "translate(0,0)"; e.currentTarget.style.boxShadow = "2px 2px 0px #111"; }}
+          onClick={() => onChange(value + 1)} style={adjBtn}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = "translate(2px,2px)"; e.currentTarget.style.boxShadow = "0px 0px 0 #2c2c2c"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = "translate(0,0)"; e.currentTarget.style.boxShadow = "2px 2px 0 #2c2c2c"; }}
         >＋</button>
       </div>
     </StepLayout>

@@ -23,56 +23,35 @@ export function ExpandableTabs({ tabs }: ExpandableTabsProps) {
   };
 
   return (
-    <div
-      style={{
-        display: "inline-flex",
-        gap: "6px",
-        background: "#FFFEF8",
-        border: "2px solid #111111",
-        borderRadius: "8px",
-        padding: "5px",
-        boxShadow: "3px 3px 0px #111111",
-      }}
-    >
+    <div style={{ display: "inline-flex", gap: "4px", background: "#F7F4EF", border: "2px solid #2c2c2c", borderRadius: "0", padding: "4px", boxShadow: "3px 3px 0 #2c2c2c" }}>
       {tabs.map((tab, idx) => {
         const Icon = tab.icon;
         const isActive = selected === idx;
-
         return (
           <motion.button
             key={idx}
             onClick={() => handleClick(idx)}
             layout
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-              padding: "7px 10px",
-              borderRadius: "5px",
-              border: isActive ? "2px solid #111111" : "2px solid transparent",
-              background: isActive ? "#FFE14D" : "transparent",
-              cursor: "pointer",
-              fontFamily: "inherit",
-              fontWeight: 700,
-              fontSize: "13px",
-              color: "#111111",
+              display: "flex", alignItems: "center", gap: "6px",
+              padding: "7px 10px", borderRadius: "0",
+              border: isActive ? "2px solid #2c2c2c" : "2px solid transparent",
+              background: isActive ? "#2c2c2c" : "transparent",
+              cursor: "pointer", fontFamily: "inherit",
+              fontWeight: 700, fontSize: "12px",
+              color: isActive ? "#F7F4EF" : "#1a1a1a",
               whiteSpace: "nowrap",
-              transition: "background 0.15s ease",
             }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
           >
-            <Icon
-              size={16}
-              style={{ flexShrink: 0, color: isActive ? "#111111" : "#555555" }}
-              strokeWidth={isActive ? 2.5 : 2}
-            />
+            <Icon size={14} style={{ flexShrink: 0 }} strokeWidth={isActive ? 2.5 : 2} />
             <AnimatePresence initial={false}>
               {isActive && (
                 <motion.span
                   initial={{ opacity: 0, width: 0 }}
                   animate={{ opacity: 1, width: "auto" }}
                   exit={{ opacity: 0, width: 0 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
                   style={{ overflow: "hidden", display: "inline-block" }}
                 >
                   {tab.title}

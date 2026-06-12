@@ -84,12 +84,12 @@ export default function Home() {
   );
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#FFF9F0" }}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#EDE8DF" }}>
       <div style={{ width: "100%", padding: "20px 24px 0" }}>
         <div style={{ maxWidth: "576px", margin: "0 auto" }}>
           <button
             onClick={() => setView("landing")}
-            style={{ fontSize: "13px", fontWeight: 600, color: "#555", background: "none", border: "none", cursor: "pointer", padding: "4px 0", fontFamily: "inherit" }}
+            style={{ fontSize: "12px", fontWeight: 700, color: "#777777", background: "none", border: "none", cursor: "pointer", padding: "4px 0", fontFamily: "inherit" }}
           >
             ← 返回
           </button>
@@ -98,19 +98,16 @@ export default function Home() {
       <div style={{ padding: "16px 24px 0" }}>
         <ProgressBar current={step} total={TOTAL_STEPS} />
       </div>
-      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "16px 24px 48px" }}>
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "560px",
-            background: "#FFFEF8",
-            border: "2px solid #111111",
-            borderRadius: "6px",
-            boxShadow: "4px 4px 0px #111111",
-            padding: "36px 32px",
-            transform: "rotate(-1deg)",
-          }}
-        >
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "8px 24px 48px" }}>
+        <div style={{
+          width: "100%",
+          maxWidth: "560px",
+          background: "#F7F4EF",
+          border: "2px solid #2c2c2c",
+          borderRadius: "0",
+          boxShadow: "3px 3px 0 #2c2c2c",
+          padding: "36px 32px",
+        }}>
           {step === 1 && <StepName value={order.name} onChange={(v) => update("name", v)} onNext={next} />}
           {step === 2 && <StepProduct value={order.product} onChange={(v) => update("product", v)} onNext={next} onPrev={prev} />}
           {step === 3 && <StepQuantity value={order.quantity} onChange={(v) => update("quantity", v)} onNext={next} onPrev={prev} />}

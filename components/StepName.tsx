@@ -9,14 +9,6 @@ interface Props {
   onNext: () => void;
 }
 
-const inputStyle: React.CSSProperties = {
-  width: "100%", padding: "12px 14px", fontSize: "16px",
-  borderRadius: "4px", border: "2px solid #111111",
-  outline: "none", background: "#FFF9F0", color: "#111111",
-  fontFamily: "inherit", fontWeight: 600,
-  transition: "box-shadow 0.15s ease",
-};
-
 export default function StepName({ value, onChange, onNext }: Props) {
   const ref = useRef<HTMLInputElement>(null);
   useEffect(() => { ref.current?.focus(); }, []);
@@ -29,8 +21,8 @@ export default function StepName({ value, onChange, onNext }: Props) {
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleNext()}
         placeholder="輸入你的名字"
-        style={inputStyle}
-        onFocus={(e) => (e.currentTarget.style.boxShadow = "3px 3px 0px #111111")}
+        style={{ width: "100%", padding: "12px 14px", fontSize: "15px", fontWeight: 600, borderRadius: "0", border: "2px solid #2c2c2c", outline: "none", background: "#EDE8DF", color: "#1a1a1a", fontFamily: "inherit", transition: "box-shadow 0.1s ease" }}
+        onFocus={(e) => (e.currentTarget.style.boxShadow = "3px 3px 0 #2c2c2c")}
         onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
       />
     </StepLayout>
