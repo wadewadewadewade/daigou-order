@@ -20,8 +20,9 @@ const containerVariants = {
 const letterVariants = {
   initial: { y: 0, color: "inherit" },
   animate: {
-    y: "-120%",
+    y: "-180%",
     color: "#888888",
+    fontSize: "10px",
     transition: { type: "spring" as const, stiffness: 300, damping: 20 },
   },
 };
