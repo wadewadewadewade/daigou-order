@@ -1,5 +1,8 @@
 "use client";
 
+import { Home, List, AlertCircle } from "lucide-react";
+import { ExpandableTabs } from "@/components/ui/expandable-tabs";
+
 interface Props {
   onStart: () => void;
 }
@@ -36,9 +39,16 @@ export default function Landing({ onStart }: Props) {
     <div style={{ background: "#FFF9F0", minHeight: "100vh", color: "#111111", fontFamily: "inherit" }}>
 
       {/* nav */}
-      <nav style={{ borderBottom: "2px solid #111111", background: "#FFF9F0" }}>
-        <div style={{ maxWidth: "760px", margin: "0 auto", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <nav style={{ borderBottom: "2px solid #111111", background: "#FFFEF8" }}>
+        <div style={{ maxWidth: "760px", margin: "0 auto", padding: "14px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
           <span style={{ fontWeight: 800, fontSize: "16px", letterSpacing: "0.06em" }}>WADE CARRY</span>
+          <ExpandableTabs
+            tabs={[
+              { title: "首頁", icon: Home, onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
+              { title: "代購流程", icon: List, onClick: () => document.getElementById("process")?.scrollIntoView({ behavior: "smooth" }) },
+              { title: "注意事項", icon: AlertCircle, onClick: () => document.getElementById("notice")?.scrollIntoView({ behavior: "smooth" }) },
+            ]}
+          />
           <button
             onClick={onStart}
             style={{ padding: "9px 20px", borderRadius: "6px", background: "#111111", color: "#fff", fontWeight: 700, fontSize: "13px", border: "2px solid #111111", boxShadow: "3px 3px 0px #555", cursor: "pointer", fontFamily: "inherit", transition: "transform 0.12s, box-shadow 0.12s" }}
@@ -142,7 +152,7 @@ export default function Landing({ onStart }: Props) {
         </section>
 
         {/* notice */}
-        <section style={{ ...card, marginBottom: "56px", background: "#FFFEF8" }}>
+        <section id="notice" style={{ ...card, marginBottom: "56px", background: "#FFFEF8" }}>
           <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", color: "#555", textTransform: "uppercase", marginBottom: "16px" }}>注意事項</p>
           <ul style={{ margin: 0, padding: "0 0 0 18px", display: "flex", flexDirection: "column", gap: "10px" }}>
             {[
