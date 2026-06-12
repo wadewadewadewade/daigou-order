@@ -25,15 +25,24 @@ export default function StepQuantity({ value, onChange, onNext, onPrev }: Props)
   return (
     <StepLayout
       question="要買幾個？"
-      hint="請輸入購買數量"
+      hint="請輸入正整數，我會照這個數量統計。"
       onNext={handleNext}
       onPrev={onPrev}
       nextDisabled={value < 1}
     >
-      <div className="flex items-center gap-4">
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <button
           onClick={() => onChange(Math.max(1, value - 1))}
-          className="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 text-2xl font-bold flex items-center justify-center transition-colors"
+          style={{
+            width: "44px", height: "44px", borderRadius: "8px",
+            border: "1.5px solid #E5E0D8", background: "#FFFFFF",
+            fontSize: "20px", fontWeight: 600, cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "border-color 0.15s ease",
+            flexShrink: 0,
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#111827")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#E5E0D8")}
         >
           −
         </button>
@@ -44,11 +53,28 @@ export default function StepQuantity({ value, onChange, onNext, onPrev }: Props)
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleNext()}
-          className="w-28 text-center border-b-2 border-gray-300 focus:border-indigo-500 outline-none text-4xl font-bold py-2 bg-transparent transition-colors"
+          style={{
+            width: "96px", textAlign: "center",
+            padding: "10px", fontSize: "24px", fontWeight: 700,
+            borderRadius: "8px", border: "1.5px solid #E5E0D8",
+            outline: "none", background: "#FAFAF8", color: "#111827",
+            transition: "border-color 0.15s ease",
+          }}
+          onFocus={(e) => (e.currentTarget.style.borderColor = "#111827")}
+          onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E0D8")}
         />
         <button
           onClick={() => onChange(value + 1)}
-          className="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 text-2xl font-bold flex items-center justify-center transition-colors"
+          style={{
+            width: "44px", height: "44px", borderRadius: "8px",
+            border: "1.5px solid #E5E0D8", background: "#FFFFFF",
+            fontSize: "20px", fontWeight: 600, cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "border-color 0.15s ease",
+            flexShrink: 0,
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#111827")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#E5E0D8")}
         >
           ＋
         </button>

@@ -17,12 +17,12 @@ export default function StepUrl({ value, onChange, onNext, onPrev }: Props) {
   return (
     <StepLayout
       question="商品網址？"
-      hint="選填，可直接按下一步跳過"
+      hint="有連結就貼上，沒有也可以跳過。"
       onNext={onNext}
       onPrev={onPrev}
       nextDisabled={false}
       nextLabel="下一步"
-      skipLabel="跳過"
+      skipLabel="略過"
     >
       <input
         ref={ref}
@@ -31,7 +31,19 @@ export default function StepUrl({ value, onChange, onNext, onPrev }: Props) {
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && onNext()}
         placeholder="https://..."
-        className="w-full border-b-2 border-gray-300 focus:border-indigo-500 outline-none text-2xl py-3 bg-transparent placeholder-gray-300 transition-colors"
+        style={{
+          width: "100%",
+          padding: "12px 14px",
+          fontSize: "15px",
+          borderRadius: "8px",
+          border: "1.5px solid #E5E0D8",
+          outline: "none",
+          background: "#FAFAF8",
+          color: "#111827",
+          transition: "border-color 0.15s ease",
+        }}
+        onFocus={(e) => (e.currentTarget.style.borderColor = "#111827")}
+        onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E0D8")}
       />
     </StepLayout>
   );

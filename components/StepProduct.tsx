@@ -19,7 +19,7 @@ export default function StepProduct({ value, onChange, onNext, onPrev }: Props) 
   return (
     <StepLayout
       question="你想買什麼？"
-      hint="請輸入商品名稱"
+      hint="輸入商品名稱、品牌、型號，越清楚越不會買錯。"
       onNext={handleNext}
       onPrev={onPrev}
       nextDisabled={!value.trim()}
@@ -30,8 +30,20 @@ export default function StepProduct({ value, onChange, onNext, onPrev }: Props) 
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleNext()}
-        placeholder="商品名稱"
-        className="w-full border-b-2 border-gray-300 focus:border-indigo-500 outline-none text-3xl py-3 bg-transparent placeholder-gray-300 transition-colors"
+        placeholder="例：Nike Air Force 1 白色 US10"
+        style={{
+          width: "100%",
+          padding: "12px 14px",
+          fontSize: "16px",
+          borderRadius: "8px",
+          border: "1.5px solid #E5E0D8",
+          outline: "none",
+          background: "#FAFAF8",
+          color: "#111827",
+          transition: "border-color 0.15s ease",
+        }}
+        onFocus={(e) => (e.currentTarget.style.borderColor = "#111827")}
+        onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E0D8")}
       />
     </StepLayout>
   );

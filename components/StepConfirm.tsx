@@ -11,42 +11,70 @@ interface Props {
 
 export default function StepConfirm({ order, onSubmit, onPrev, submitting }: Props) {
   return (
-    <div className="w-full max-w-lg mx-auto space-y-8">
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">確認訂單</h2>
-        <p className="text-gray-400 text-lg">請確認以下資訊後送出</p>
+        <h2 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 700, color: "#111827", marginBottom: "8px", letterSpacing: "-0.01em" }}>
+          確認需求
+        </h2>
+        <p style={{ fontSize: "14px", color: "#6B7280" }}>送出前再檢查一次，買錯就不是代購，是災難片。</p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 divide-y divide-gray-100">
-        <Row label="姓名" value={order.name} />
-        <Row label="品名" value={order.product} />
-        <Row label="數量" value={String(order.quantity)} />
-        <Row label="商品網址" value={order.productUrl || "（未填寫）"} muted={!order.productUrl} />
-        <div className="px-6 py-4">
-          <p className="text-sm text-gray-400 mb-3">商品圖片（{order.imageUrls.length} 張）</p>
-          <div className="flex flex-wrap gap-2">
-            {order.imageUrls.map((url, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={url} alt="" className="w-16 h-16 object-cover rounded-xl" />
-            ))}
+      {/* receipt card */}
+      <div style={{ border: "1px solid #E5E0D8", borderRadius: "10px", overflow: "hidden" }}>
+        <div style={{ background: "#F7F3EC", padding: "12px 16px", borderBottom: "1px solid #E5E0D8" }}>
+          <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", color: "#6B7280", textTransform: "uppercase" }}>
+            Order Summary
+          </p>
+        </div>
+        <div style={{ background: "#FFFFFF" }}>
+          <Row label="姓名" value={order.name} />
+          <Row label="品名" value={order.product} />
+          <Row label="數量" value={`${order.quantity} 個`} />
+          <Row label="商品網址" value={order.productUrl || "（未填寫）"} muted={!order.productUrl} />
+          <div style={{ padding: "14px 16px", borderTop: "1px solid #F3F0EA" }}>
+            <p style={{ fontSize: "11px", color: "#6B7280", marginBottom: "10px", fontWeight: 500 }}>
+              商品圖片（{order.imageUrls.length} 張）
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+              {order.imageUrls.map((url, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={i} src={url} alt="" style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "6px", border: "1px solid #E5E0D8" }} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-3">
+      <div style={{ display: "flex", gap: "10px" }}>
         <button
           onClick={onPrev}
           disabled={submitting}
-          className="flex-1 py-4 rounded-2xl border-2 border-gray-200 text-gray-600 font-semibold text-lg hover:bg-gray-50 transition-colors disabled:opacity-40"
+          style={{
+            flex: 1, padding: "13px 0", borderRadius: "8px",
+            border: "1.5px solid #E5E0D8", background: "#FFFFFF",
+            color: "#111827", fontWeight: 600, fontSize: "14px",
+            cursor: submitting ? "not-allowed" : "pointer", opacity: submitting ? 0.4 : 1,
+            transition: "border-color 0.15s ease",
+          }}
+          onMouseEnter={(e) => { if (!submitting) e.currentTarget.style.borderColor = "#111827"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E5E0D8"; }}
         >
-          上一步
+          返回修改
         </button>
         <button
           onClick={onSubmit}
           disabled={submitting}
-          className="flex-2 flex-[2] py-4 rounded-2xl bg-indigo-500 text-white font-semibold text-lg hover:bg-indigo-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          style={{
+            flex: 2, padding: "13px 0", borderRadius: "8px",
+            border: "none", background: submitting ? "#D1D5DB" : "#111827",
+            color: "#FFFFFF", fontWeight: 600, fontSize: "14px",
+            cursor: submitting ? "not-allowed" : "pointer",
+            transition: "opacity 0.15s ease",
+          }}
+          onMouseEnter={(e) => { if (!submitting) e.currentTarget.style.opacity = "0.85"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
         >
-          {submitting ? "送出中..." : "確認送出"}
+          {submitting ? "送出中…" : "送出需求"}
         </button>
       </div>
     </div>
@@ -55,11 +83,9 @@ export default function StepConfirm({ order, onSubmit, onPrev, submitting }: Pro
 
 function Row({ label, value, muted }: { label: string; value: string; muted?: boolean }) {
   return (
-    <div className="flex items-center px-6 py-4 gap-4">
-      <span className="text-sm text-gray-400 w-20 shrink-0">{label}</span>
-      <span className={`text-base font-medium break-all ${muted ? "text-gray-300" : "text-gray-800"}`}>
-        {value}
-      </span>
+    <div style={{ display: "flex", alignItems: "flex-start", padding: "12px 16px", borderTop: "1px solid #F3F0EA", gap: "12px" }}>
+      <span style={{ fontSize: "12px", color: "#9CA3AF", width: "64px", flexShrink: 0, paddingTop: "2px" }}>{label}</span>
+      <span style={{ fontSize: "14px", fontWeight: 500, color: muted ? "#D1D5DB" : "#111827", wordBreak: "break-all" }}>{value}</span>
     </div>
   );
 }

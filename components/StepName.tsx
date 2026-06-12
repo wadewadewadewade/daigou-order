@@ -18,9 +18,8 @@ export default function StepName({ value, onChange, onNext }: Props) {
   return (
     <StepLayout
       question="你是誰？"
-      hint="請輸入你的姓名"
+      hint="先留個名字，我才知道這包是誰的戰利品。"
       onNext={handleNext}
-      onPrev={undefined}
       nextDisabled={!value.trim()}
     >
       <input
@@ -29,8 +28,20 @@ export default function StepName({ value, onChange, onNext }: Props) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleNext()}
-        placeholder="姓名"
-        className="w-full border-b-2 border-gray-300 focus:border-indigo-500 outline-none text-3xl py-3 bg-transparent placeholder-gray-300 transition-colors"
+        placeholder="輸入你的名字"
+        style={{
+          width: "100%",
+          padding: "12px 14px",
+          fontSize: "16px",
+          borderRadius: "8px",
+          border: "1.5px solid #E5E0D8",
+          outline: "none",
+          background: "#FAFAF8",
+          color: "#111827",
+          transition: "border-color 0.15s ease",
+        }}
+        onFocus={(e) => (e.currentTarget.style.borderColor = "#111827")}
+        onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E0D8")}
       />
     </StepLayout>
   );

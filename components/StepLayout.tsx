@@ -13,50 +13,35 @@ interface Props {
   skipLabel?: string;
 }
 
-export default function StepLayout({
-  question,
-  hint,
-  children,
-  onNext,
-  onPrev,
-  nextDisabled = false,
-  nextLabel = "下一步",
-  skipLabel,
-}: Props) {
+const btnBase: React.CSSProperties = {
+  flex: 1,
+  padding: "13px 0",
+  borderRadius: "8px",
+  fontWeight: 600,
+  fontSize: "14px",
+  cursor: "pointer",
+  transition: "transform 0.15s ease, opacity 0.15s ease",
+};
+
+export default function StepLayout({ question, hint, children, onNext, onPrev, nextDisabled = false, nextLabel = "下一步", skipLabel }: Props) {
   return (
-    <div className="w-full max-w-lg mx-auto space-y-10">
+    <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
       <div>
-        <h2
-          className="font-bold leading-tight mb-3"
-          style={{ fontSize: "48px", fontWeight: 700, color: "#0A0A0A" }}
-        >
+        <h2 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 700, color: "#111827", lineHeight: 1.25, marginBottom: "8px", letterSpacing: "-0.01em" }}>
           {question}
         </h2>
-        {hint && (
-          <p style={{ fontSize: "15px", color: "#3B3B3B" }}>{hint}</p>
-        )}
+        {hint && <p style={{ fontSize: "14px", color: "#6B7280", lineHeight: 1.6 }}>{hint}</p>}
       </div>
 
       <div>{children}</div>
 
-      <div className="flex gap-3 pt-2">
+      <div style={{ display: "flex", gap: "10px", marginTop: "4px" }}>
         {onPrev && (
           <button
             onClick={onPrev}
-            style={{
-              flex: 1,
-              padding: "14px 0",
-              borderRadius: "8px",
-              border: "1.5px solid #0A0A0A",
-              background: "#FFFFFF",
-              color: "#0A0A0A",
-              fontWeight: 600,
-              fontSize: "15px",
-              cursor: "pointer",
-              transition: "transform 0.15s ease",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            style={{ ...btnBase, background: "#FFFFFF", color: "#111827", border: "1.5px solid #E5E0D8" }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.02)"; e.currentTarget.style.borderColor = "#111827"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.borderColor = "#E5E0D8"; }}
           >
             上一步
           </button>
@@ -64,20 +49,9 @@ export default function StepLayout({
         {skipLabel && (
           <button
             onClick={onNext}
-            style={{
-              flex: 1,
-              padding: "14px 0",
-              borderRadius: "8px",
-              border: "1.5px solid #0A0A0A",
-              background: "#FFFFFF",
-              color: "#3B3B3B",
-              fontWeight: 600,
-              fontSize: "15px",
-              cursor: "pointer",
-              transition: "transform 0.15s ease",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            style={{ ...btnBase, background: "#FFFFFF", color: "#6B7280", border: "1.5px solid #E5E0D8" }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.02)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
           >
             {skipLabel}
           </button>
@@ -86,19 +60,15 @@ export default function StepLayout({
           onClick={onNext}
           disabled={nextDisabled}
           style={{
-            flex: 2,
-            padding: "14px 0",
-            borderRadius: "8px",
-            border: "none",
-            background: nextDisabled ? "#D1D5DB" : "#0A0A0A",
+            ...btnBase,
+            flex: skipLabel ? 1 : 2,
+            background: nextDisabled ? "#D1D5DB" : "#111827",
             color: "#FFFFFF",
-            fontWeight: 600,
-            fontSize: "15px",
+            border: "none",
             cursor: nextDisabled ? "not-allowed" : "pointer",
-            transition: "transform 0.15s ease, background 0.2s ease",
           }}
-          onMouseEnter={(e) => { if (!nextDisabled) e.currentTarget.style.transform = "scale(1.02)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
+          onMouseEnter={(e) => { if (!nextDisabled) e.currentTarget.style.opacity = "0.85"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
         >
           {nextLabel}
         </button>

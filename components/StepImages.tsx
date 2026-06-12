@@ -16,16 +16,14 @@ const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!;
 export default function StepImages({ value, onChange, onNext, onPrev }: Props) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const [dragOver, setDragOver] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const uploadFile = async (file: File): Promise<string> => {
     const form = new FormData();
     form.append("file", file);
     form.append("upload_preset", UPLOAD_PRESET);
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-      { method: "POST", body: form }
-    );
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, { method: "POST", body: form });
     if (!res.ok) throw new Error("上傳失敗");
     const data = await res.json();
     return data.secure_url as string;
@@ -44,55 +42,63 @@ export default function StepImages({ value, onChange, onNext, onPrev }: Props) {
     }
   };
 
-  const removeImage = (idx: number) => {
-    onChange(value.filter((_, i) => i !== idx));
-  };
+  const removeImage = (idx: number) => onChange(value.filter((_, i) => i !== idx));
 
   return (
     <StepLayout
       question="上傳商品圖片"
-      hint="請上傳至少一張商品圖片（可多張）"
+      hint="請上傳商品截圖、包裝圖或參考照片，可多張。"
       onNext={onNext}
       onPrev={onPrev}
       nextDisabled={value.length === 0 || uploading}
     >
-      <div className="w-full space-y-4">
+      <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
         <div
           onClick={() => !uploading && inputRef.current?.click()}
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => {
-            e.preventDefault();
-            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+          onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={(e) => { e.preventDefault(); setDragOver(false); if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); }}
+          style={{
+            border: `1.5px dashed ${dragOver ? "#111827" : "#E5E0D8"}`,
+            borderRadius: "10px",
+            padding: "32px 24px",
+            textAlign: "center",
+            cursor: uploading ? "default" : "pointer",
+            background: dragOver ? "#F0EDE6" : "#FAFAF8",
+            transition: "border-color 0.15s ease, background 0.15s ease",
           }}
-          className="border-2 border-dashed border-gray-300 hover:border-indigo-400 rounded-2xl p-8 text-center cursor-pointer transition-colors"
         >
           {uploading ? (
-            <p className="text-indigo-500 text-lg animate-pulse">上傳中...</p>
+            <p style={{ fontSize: "14px", color: "#B45309" }}>上傳中，請稍候…</p>
           ) : (
             <>
-              <p className="text-4xl mb-2">📸</p>
-              <p className="text-gray-500 text-lg">點擊或拖曳圖片到這裡</p>
+              <p style={{ fontSize: "28px", marginBottom: "8px" }}>📎</p>
+              <p style={{ fontSize: "14px", color: "#6B7280" }}>點擊或拖曳圖片到這裡</p>
+              <p style={{ fontSize: "12px", color: "#9CA3AF", marginTop: "4px" }}>支援 JPG、PNG、HEIC，可多張</p>
             </>
           )}
         </div>
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          className="hidden"
-          onChange={(e) => e.target.files && handleFiles(e.target.files)}
-        />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+
+        <input ref={inputRef} type="file" accept="image/*" multiple className="hidden" style={{ display: "none" }} onChange={(e) => e.target.files && handleFiles(e.target.files)} />
+
+        {error && <p style={{ fontSize: "13px", color: "#DC2626" }}>{error}</p>}
+
         {value.length > 0 && (
-          <div className="flex flex-wrap gap-3">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(76px, 1fr))", gap: "8px" }}>
             {value.map((url, i) => (
-              <div key={i} className="relative w-20 h-20 rounded-xl overflow-hidden group">
+              <div key={i} style={{ position: "relative", borderRadius: "8px", overflow: "hidden", aspectRatio: "1", border: "1px solid #E5E0D8" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={url} alt="" className="w-full h-full object-cover" />
+                <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <button
                   onClick={() => removeImage(i)}
-                  className="absolute inset-0 bg-black/50 text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                  style={{
+                    position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)",
+                    color: "#fff", border: "none", cursor: "pointer",
+                    fontSize: "16px", opacity: 0, transition: "opacity 0.15s ease",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "0")}
                 >
                   ✕
                 </button>
