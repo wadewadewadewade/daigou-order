@@ -18,12 +18,21 @@ const containerVariants = {
 };
 
 const letterVariants = {
-  initial: { y: 0, color: "inherit" },
+  initial: { y: 0, color: "inherit", fontSize: "14px" },
   animate: {
-    y: "-180%",
+    y: "-140%",
     color: "#888888",
     fontSize: "10px",
     transition: { type: "spring" as const, stiffness: 300, damping: 20 },
+  },
+};
+
+const containerVariantsFloating = {
+  initial: { background: "transparent", padding: "0" },
+  animate: {
+    background: "#EDE8DF",
+    padding: "0 4px",
+    transition: { duration: 0.1 },
   },
 };
 
@@ -36,8 +45,8 @@ export const AnimatedInput = forwardRef<HTMLInputElement, InputProps>(
       <div className={cn("relative", className)}>
         <motion.div
           className="absolute top-1/2 -translate-y-1/2 pointer-events-none text-[#2c2c2c]"
-          style={{ left: "14px" }}
-          variants={containerVariants}
+          style={{ left: "12px" }}
+          variants={containerVariantsFloating}
           initial="initial"
           animate={showLabel ? "animate" : "initial"}
         >
