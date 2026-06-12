@@ -70,9 +70,11 @@ export default function Landing({ onStart }: Props) {
           <h1 style={{ fontSize: "clamp(42px, 9vw, 72px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.03em", marginBottom: "24px", transform: "rotate(-1.5deg)", display: "inline-block" }}>
             代購需求登記
           </h1>
-          <p style={{ fontSize: "17px", color: "#444", lineHeight: 1.75, maxWidth: "520px", margin: "0 auto 44px", display: "block" }}>
-            想買的商品先丟上來。我會依這趟美國 / 日本行程、現場庫存與行李空間，協助整理需求與確認能不能帶回來。
-          </p>
+          <div style={{ maxWidth: "520px", margin: "0 auto 44px", textAlign: "left", background: "#FFFEF8", border: "2px solid #111111", borderLeft: "6px solid #FFE14D", borderRadius: "6px", boxShadow: "4px 4px 0px #111111", padding: "20px 24px" }}>
+            <p style={{ fontSize: "17px", color: "#333", lineHeight: 1.85, margin: 0 }}>
+              想買的商品先丟上來。我會依這趟美國 / 日本行程、現場庫存與行李空間，協助整理需求與確認能不能帶回來。
+            </p>
+          </div>
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
             <button
               onClick={onStart}
@@ -93,14 +95,6 @@ export default function Landing({ onStart }: Props) {
           </div>
         </section>
 
-        {/* badge row */}
-        <section style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "52px", justifyContent: "center" }}>
-          {["圖片必填", "網址選填", "可多張圖片", "依現場狀況採買"].map((t) => (
-            <span key={t} style={{ padding: "6px 16px", borderRadius: "99px", border: "2px solid #111111", fontSize: "13px", fontWeight: 700, background: "#FFE14D", boxShadow: "2px 2px 0px #111" }}>
-              {t}
-            </span>
-          ))}
-        </section>
 
         {/* trip status */}
         <NeoCard style={{ marginBottom: "52px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
