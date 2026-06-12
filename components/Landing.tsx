@@ -94,8 +94,8 @@ export default function Landing({ onStart }: Props) {
           <div>
             <p style={{ fontSize: "10px", fontFamily: "var(--font-ps2)", color: "#777777", marginBottom: "6px", letterSpacing: "0.04em" }}>本次行程</p>
             <p style={{ fontSize: "18px", fontWeight: 800, marginBottom: "6px" }}>美國 / 日本</p>
-            <p style={{ fontSize: "9px", fontFamily: "var(--font-ps2)", color: "#F7F4EF", background: "#2c2c2c", display: "inline-block", padding: "4px 10px", marginBottom: "12px", letterSpacing: "0.04em" }}>需求收集中</p>
-            <p style={{ fontSize: "13px", color: "#777777", lineHeight: 1.7 }}>此表單主要用於統一整理需求，是否能購買會依現場狀況再確認。</p>
+            <p style={{ fontSize: "9px", fontFamily: "var(--font-ps2)", color: "#F7F4EF", background: "#2c2c2c", display: "inline-block", padding: "4px 10px", marginBottom: "12px", letterSpacing: "0.04em", fontWeight: 700 }}>需求收集中</p>
+            <p style={{ fontSize: "14px", fontWeight: 500, color: "#444444", lineHeight: 1.7 }}>此表單主要用於統一整理需求，是否能購買會依現場狀況再確認。</p>
           </div>
         </NeoCard>
 
@@ -110,7 +110,7 @@ export default function Landing({ onStart }: Props) {
             ].map((f) => (
               <NeoCard key={f.title}>
                 <p style={{ fontSize: "14px", fontWeight: 800, marginBottom: "8px" }}>{f.title}</p>
-                <p style={{ fontSize: "13px", color: "#777777", lineHeight: 1.7 }}>{f.desc}</p>
+                <p style={{ fontSize: "14px", fontWeight: 500, color: "#444444", lineHeight: 1.7 }}>{f.desc}</p>
               </NeoCard>
             ))}
           </div>
@@ -128,7 +128,7 @@ export default function Landing({ onStart }: Props) {
               <NeoCard key={p.num} style={{ borderTop: "4px solid #2c2c2c" }}>
                 <p style={{ fontFamily: "var(--font-ps2)", fontSize: "9px", color: "#777777", marginBottom: "10px", letterSpacing: "0.06em" }}>{p.num}</p>
                 <p style={{ fontSize: "14px", fontWeight: 800, marginBottom: "6px" }}>{p.title}</p>
-                <p style={{ fontSize: "13px", color: "#777777", lineHeight: 1.7 }}>{p.desc}</p>
+                <p style={{ fontSize: "14px", fontWeight: 500, color: "#444444", lineHeight: 1.7 }}>{p.desc}</p>
               </NeoCard>
             ))}
           </div>
@@ -145,7 +145,7 @@ export default function Landing({ onStart }: Props) {
               "價格、匯率、稅金與運費會再另外確認。",
               "不收大型、易碎、違禁或不方便攜帶的商品。",
             ].map((n) => (
-              <li key={n} style={{ fontSize: "13px", color: "#777777", lineHeight: 1.7 }}>{n}</li>
+              <li key={n} style={{ fontSize: "14px", fontWeight: 500, color: "#444444", lineHeight: 1.7 }}>{n}</li>
             ))}
           </ul>
         </section>
