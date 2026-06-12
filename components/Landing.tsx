@@ -92,16 +92,16 @@ export default function Landing({ onStart }: Props) {
         <NeoCard style={{ marginBottom: "52px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
           <div style={{ width: "10px", height: "10px", border: "2px solid #2c2c2c", background: "#2c2c2c", marginTop: "5px", flexShrink: 0 }} />
           <div>
-            <p style={{ fontSize: "10px", fontFamily: "var(--font-ps2)", color: "#777777", marginBottom: "6px", letterSpacing: "0.04em" }}>本次行程</p>
+            <p style={{ fontSize: "10px", fontWeight: 700,color: "#777777", marginBottom: "6px", letterSpacing: "0.04em" }}>本次行程</p>
             <p style={{ fontSize: "18px", fontWeight: 800, marginBottom: "6px" }}>美國 / 日本</p>
-            <p style={{ fontSize: "9px", fontFamily: "var(--font-ps2)", color: "#F7F4EF", background: "#2c2c2c", display: "inline-block", padding: "4px 10px", marginBottom: "12px", letterSpacing: "0.04em", fontWeight: 700 }}>需求收集中</p>
+            <p style={{ fontSize: "9px", fontWeight: 700, color: "#F7F4EF", background: "#2c2c2c", display: "inline-block", padding: "4px 10px", marginBottom: "12px", letterSpacing: "0.04em" }}>需求收集中</p>
             <p style={{ fontSize: "14px", fontWeight: 500, color: "#444444", lineHeight: 1.7 }}>此表單主要用於統一整理需求，是否能購買會依現場狀況再確認。</p>
           </div>
         </NeoCard>
 
         {/* features */}
         <section style={{ marginBottom: "56px" }}>
-          <p style={{ fontSize: "9px", fontFamily: "var(--font-ps2)", color: "#777777", letterSpacing: "0.08em", marginBottom: "20px" }}>服務說明</p>
+          <p style={{ fontSize: "9px", fontWeight: 700,color: "#777777", letterSpacing: "0.08em", marginBottom: "20px" }}>服務說明</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
             {[
               { title: "圖片輔助找貨", desc: "附圖說明更好找，模糊描述我猜不到。" },
@@ -118,7 +118,7 @@ export default function Landing({ onStart }: Props) {
 
         {/* process */}
         <section id="process" style={{ marginBottom: "56px" }}>
-          <p style={{ fontSize: "9px", fontFamily: "var(--font-ps2)", color: "#777777", letterSpacing: "0.08em", marginBottom: "20px" }}>代購流程</p>
+          <p style={{ fontSize: "9px", fontWeight: 700,color: "#777777", letterSpacing: "0.08em", marginBottom: "20px" }}>代購流程</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px" }}>
             {[
               { num: "01", title: "填寫需求", desc: "填寫商品名稱、數量與圖片，送出登記表。" },
@@ -126,7 +126,7 @@ export default function Landing({ onStart }: Props) {
               { num: "03", title: "統一回覆", desc: "確認結果後統一通知，安排費用與交貨。" },
             ].map((p) => (
               <NeoCard key={p.num} style={{ borderTop: "4px solid #2c2c2c" }}>
-                <p style={{ fontFamily: "var(--font-ps2)", fontSize: "9px", color: "#777777", marginBottom: "10px", letterSpacing: "0.06em" }}>{p.num}</p>
+                <p style={{ fontWeight: 700,fontSize: "9px", color: "#777777", marginBottom: "10px", letterSpacing: "0.06em" }}>{p.num}</p>
                 <p style={{ fontSize: "14px", fontWeight: 800, marginBottom: "6px" }}>{p.title}</p>
                 <p style={{ fontSize: "14px", fontWeight: 500, color: "#444444", lineHeight: 1.7 }}>{p.desc}</p>
               </NeoCard>
@@ -136,7 +136,7 @@ export default function Landing({ onStart }: Props) {
 
         {/* notice */}
         <section id="notice" style={{ ...card, marginBottom: "56px" }}>
-          <p style={{ fontSize: "9px", fontFamily: "var(--font-ps2)", color: "#777777", letterSpacing: "0.08em", marginBottom: "16px" }}>注意事項</p>
+          <p style={{ fontSize: "9px", fontWeight: 700,color: "#777777", letterSpacing: "0.08em", marginBottom: "16px" }}>注意事項</p>
           <ul style={{ margin: 0, padding: "0 0 0 18px", display: "flex", flexDirection: "column", gap: "10px" }}>
             {[
               "圖片請盡量清楚，最好包含外觀、規格、容量或型號。",

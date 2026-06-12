@@ -26,7 +26,7 @@ export default function StepConfirm({ order, onSubmit, onPrev, submitting }: Pro
 
       <div style={{ border: "2px solid #2c2c2c", borderRadius: "0", boxShadow: "3px 3px 0 #2c2c2c", overflow: "hidden" }}>
         <div style={{ background: "#2c2c2c", padding: "10px 16px" }}>
-          <p style={{ fontSize: "9px", fontFamily: "var(--font-ps2)", color: "#F7F4EF", letterSpacing: "0.06em" }}>ORDER SUMMARY</p>
+          <p style={{ fontSize: "9px", fontWeight: 700,color: "#F7F4EF", letterSpacing: "0.06em" }}>ORDER SUMMARY</p>
         </div>
         <div style={{ background: "#F7F4EF" }}>
           <Row label="姓名" value={order.name} />
@@ -34,7 +34,7 @@ export default function StepConfirm({ order, onSubmit, onPrev, submitting }: Pro
           <Row label="數量" value={`${order.quantity} 個`} />
           <Row label="網址" value={order.productUrl || "（未填寫）"} muted={!order.productUrl} />
           <div style={{ padding: "14px 16px", borderTop: "1px solid #d5d0c8" }}>
-            <p style={{ fontSize: "9px", fontFamily: "var(--font-ps2)", color: "#777777", marginBottom: "10px", letterSpacing: "0.04em" }}>
+            <p style={{ fontSize: "9px", fontWeight: 700,color: "#777777", marginBottom: "10px", letterSpacing: "0.04em" }}>
               IMAGES ({order.imageUrls.length})
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
@@ -68,7 +68,7 @@ export default function StepConfirm({ order, onSubmit, onPrev, submitting }: Pro
 function Row({ label, value, muted }: { label: string; value: string; muted?: boolean }) {
   return (
     <div style={{ display: "flex", alignItems: "flex-start", padding: "12px 16px", borderTop: "1px solid #d5d0c8", gap: "12px" }}>
-      <span style={{ fontSize: "10px", fontFamily: "var(--font-ps2)", color: "#777777", width: "48px", flexShrink: 0, paddingTop: "3px", letterSpacing: "0.02em" }}>{label}</span>
+      <span style={{ fontSize: "10px", fontWeight: 700,color: "#777777", width: "48px", flexShrink: 0, paddingTop: "3px", letterSpacing: "0.02em" }}>{label}</span>
       <span style={{ fontSize: "13px", fontWeight: 700, color: muted ? "#c0bbb3" : "#1a1a1a", wordBreak: "break-all" }}>{value}</span>
     </div>
   );
