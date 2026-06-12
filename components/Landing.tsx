@@ -70,7 +70,7 @@ export default function Landing({ onStart }: Props) {
           <h1 style={{ fontSize: "clamp(42px, 9vw, 72px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.03em", marginBottom: "24px", transform: "rotate(-1.5deg)", display: "inline-block" }}>
             代購需求登記
           </h1>
-          <div style={{ maxWidth: "520px", margin: "0 auto 44px", textAlign: "left", background: "#FFFEF8", border: "2px solid #111111", borderLeft: "6px solid #FFE14D", borderRadius: "6px", boxShadow: "4px 4px 0px #111111", padding: "20px 24px" }}>
+          <div style={{ maxWidth: "520px", margin: "0 auto 44px", textAlign: "left", background: "#FFFEF8", borderTop: "2px solid #111111", borderRight: "2px solid #111111", borderBottom: "2px solid #111111", borderLeft: "6px solid #FFE14D", borderRadius: "6px", boxShadow: "4px 4px 0px #111111", padding: "20px 24px" }}>
             <p style={{ fontSize: "17px", color: "#333", lineHeight: 1.85, margin: 0 }}>
               想買的商品先丟上來。我會依這趟美國 / 日本行程、現場庫存與行李空間，協助整理需求與確認能不能帶回來。
             </p>
