@@ -44,8 +44,8 @@ export const AnimatedInput = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn("relative", className)}>
         <motion.div
-          className="absolute top-1/2 -translate-y-1/2 pointer-events-none text-[#2c2c2c]"
-          style={{ left: "12px" }}
+          className="absolute pointer-events-none text-[#2c2c2c]"
+          style={{ left: "12px", top: "50%", transform: "translateY(-50%)" }}
           variants={containerVariantsFloating}
           initial="initial"
           animate={showLabel ? "animate" : "initial"}
@@ -67,7 +67,7 @@ export const AnimatedInput = forwardRef<HTMLInputElement, InputProps>(
           {...props}
           style={{
             width: "100%",
-            padding: "12px 14px",
+            padding: "20px 14px 12px",
             fontSize: "15px",
             fontWeight: 600,
             borderRadius: "0",
