@@ -1,31 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F7F3EC;
-  --card: #FFFFFF;
-  --text-main: #111827;
-  --text-sub: #6B7280;
-  --border: #E5E0D8;
-  --btn-primary: #111827;
-  --accent: #B45309;
-  --font-inter: "Inter", sans-serif;
+  --bg: #FFF9F0;
+  --card: #FFFEF8;
+  --text: #111111;
+  --border: #111111;
+  --accent: #FFE14D;
+  --font-sg: "Space Grotesk", sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-inter);
+  font-family: var(--font-sg);
   -webkit-font-smoothing: antialiased;
   background: var(--bg);
-  color: var(--text-main);
+  color: var(--text);
 }
 
 input[type="number"]::-webkit-inner-spin-button,

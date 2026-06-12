@@ -13,24 +13,26 @@ interface Props {
   skipLabel?: string;
 }
 
-const btnBase: React.CSSProperties = {
+const baseBtn: React.CSSProperties = {
   flex: 1,
   padding: "13px 0",
-  borderRadius: "8px",
-  fontWeight: 600,
+  borderRadius: "6px",
+  fontWeight: 700,
   fontSize: "14px",
   cursor: "pointer",
-  transition: "transform 0.15s ease, opacity 0.15s ease",
+  border: "2px solid #111111",
+  transition: "transform 0.12s ease, box-shadow 0.12s ease",
+  fontFamily: "inherit",
 };
 
 export default function StepLayout({ question, hint, children, onNext, onPrev, nextDisabled = false, nextLabel = "下一步", skipLabel }: Props) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
       <div>
-        <h2 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 700, color: "#111827", lineHeight: 1.25, marginBottom: "8px", letterSpacing: "-0.01em" }}>
+        <h2 style={{ fontSize: "clamp(26px, 5vw, 34px)", fontWeight: 800, color: "#111111", lineHeight: 1.2, marginBottom: "8px", letterSpacing: "-0.01em" }}>
           {question}
         </h2>
-        {hint && <p style={{ fontSize: "14px", color: "#6B7280", lineHeight: 1.6 }}>{hint}</p>}
+        {hint && <p style={{ fontSize: "14px", color: "#555", lineHeight: 1.6 }}>{hint}</p>}
       </div>
 
       <div>{children}</div>
@@ -39,9 +41,9 @@ export default function StepLayout({ question, hint, children, onNext, onPrev, n
         {onPrev && (
           <button
             onClick={onPrev}
-            style={{ ...btnBase, background: "#FFFFFF", color: "#111827", border: "1.5px solid #E5E0D8" }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.02)"; e.currentTarget.style.borderColor = "#111827"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.borderColor = "#E5E0D8"; }}
+            style={{ ...baseBtn, background: "#FFFEF8", color: "#111111", boxShadow: "3px 3px 0px #111111" }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = "translate(-2px,-2px)"; e.currentTarget.style.boxShadow = "5px 5px 0px #111111"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = "translate(0,0)"; e.currentTarget.style.boxShadow = "3px 3px 0px #111111"; }}
           >
             上一步
           </button>
@@ -49,9 +51,9 @@ export default function StepLayout({ question, hint, children, onNext, onPrev, n
         {skipLabel && (
           <button
             onClick={onNext}
-            style={{ ...btnBase, background: "#FFFFFF", color: "#6B7280", border: "1.5px solid #E5E0D8" }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.02)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
+            style={{ ...baseBtn, background: "#FFFEF8", color: "#555", boxShadow: "3px 3px 0px #555" }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = "translate(-2px,-2px)"; e.currentTarget.style.boxShadow = "5px 5px 0px #555"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = "translate(0,0)"; e.currentTarget.style.boxShadow = "3px 3px 0px #555"; }}
           >
             {skipLabel}
           </button>
@@ -60,15 +62,16 @@ export default function StepLayout({ question, hint, children, onNext, onPrev, n
           onClick={onNext}
           disabled={nextDisabled}
           style={{
-            ...btnBase,
+            ...baseBtn,
             flex: skipLabel ? 1 : 2,
-            background: nextDisabled ? "#D1D5DB" : "#111827",
+            background: nextDisabled ? "#ccc" : "#111111",
             color: "#FFFFFF",
-            border: "none",
+            boxShadow: nextDisabled ? "none" : "3px 3px 0px #555",
             cursor: nextDisabled ? "not-allowed" : "pointer",
+            opacity: nextDisabled ? 0.4 : 1,
           }}
-          onMouseEnter={(e) => { if (!nextDisabled) e.currentTarget.style.opacity = "0.85"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+          onMouseEnter={(e) => { if (!nextDisabled) { e.currentTarget.style.transform = "translate(-2px,-2px)"; e.currentTarget.style.boxShadow = "5px 5px 0px #555"; } }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = "translate(0,0)"; e.currentTarget.style.boxShadow = nextDisabled ? "none" : "3px 3px 0px #555"; }}
         >
           {nextLabel}
         </button>

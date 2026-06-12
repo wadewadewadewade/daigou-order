@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-sg" });
 
 export const metadata: Metadata = {
   title: "代購訂單",
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-TW" className={`h-full ${inter.variable}`}>
+    <html lang="zh-TW" className={`h-full ${spaceGrotesk.variable}`}>
       <body className="min-h-full">{children}</body>
     </html>
   );

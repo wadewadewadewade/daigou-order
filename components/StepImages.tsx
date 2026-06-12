@@ -45,13 +45,7 @@ export default function StepImages({ value, onChange, onNext, onPrev }: Props) {
   const removeImage = (idx: number) => onChange(value.filter((_, i) => i !== idx));
 
   return (
-    <StepLayout
-      question="上傳商品圖片"
-      hint="請上傳商品截圖、包裝圖或參考照片，可多張。"
-      onNext={onNext}
-      onPrev={onPrev}
-      nextDisabled={value.length === 0 || uploading}
-    >
+    <StepLayout question="上傳商品圖片" hint="請上傳商品截圖、包裝圖或參考照片，可多張。" onNext={onNext} onPrev={onPrev} nextDisabled={value.length === 0 || uploading}>
       <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
         <div
           onClick={() => !uploading && inputRef.current?.click()}
@@ -59,49 +53,43 @@ export default function StepImages({ value, onChange, onNext, onPrev }: Props) {
           onDragLeave={() => setDragOver(false)}
           onDrop={(e) => { e.preventDefault(); setDragOver(false); if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); }}
           style={{
-            border: `1.5px dashed ${dragOver ? "#111827" : "#E5E0D8"}`,
-            borderRadius: "10px",
+            border: `2px dashed #111111`,
+            borderRadius: "6px",
             padding: "32px 24px",
             textAlign: "center",
             cursor: uploading ? "default" : "pointer",
-            background: dragOver ? "#F0EDE6" : "#FAFAF8",
-            transition: "border-color 0.15s ease, background 0.15s ease",
+            background: dragOver ? "#FFE14D" : "#FFF9F0",
+            boxShadow: dragOver ? "3px 3px 0px #111" : "none",
+            transition: "background 0.15s, box-shadow 0.15s",
           }}
         >
           {uploading ? (
-            <p style={{ fontSize: "14px", color: "#B45309" }}>上傳中，請稍候…</p>
+            <p style={{ fontSize: "14px", fontWeight: 700 }}>上傳中，請稍候…</p>
           ) : (
             <>
               <p style={{ fontSize: "28px", marginBottom: "8px" }}>📎</p>
-              <p style={{ fontSize: "14px", color: "#6B7280" }}>點擊或拖曳圖片到這裡</p>
-              <p style={{ fontSize: "12px", color: "#9CA3AF", marginTop: "4px" }}>支援 JPG、PNG、HEIC，可多張</p>
+              <p style={{ fontSize: "14px", fontWeight: 700 }}>點擊或拖曳圖片到這裡</p>
+              <p style={{ fontSize: "12px", color: "#555", marginTop: "4px" }}>支援 JPG、PNG、HEIC，可多張</p>
             </>
           )}
         </div>
 
-        <input ref={inputRef} type="file" accept="image/*" multiple className="hidden" style={{ display: "none" }} onChange={(e) => e.target.files && handleFiles(e.target.files)} />
+        <input ref={inputRef} type="file" accept="image/*" multiple style={{ display: "none" }} onChange={(e) => e.target.files && handleFiles(e.target.files)} />
 
-        {error && <p style={{ fontSize: "13px", color: "#DC2626" }}>{error}</p>}
+        {error && <p style={{ fontSize: "13px", color: "#DC2626", fontWeight: 600 }}>{error}</p>}
 
         {value.length > 0 && (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(76px, 1fr))", gap: "8px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: "8px" }}>
             {value.map((url, i) => (
-              <div key={i} style={{ position: "relative", borderRadius: "8px", overflow: "hidden", aspectRatio: "1", border: "1px solid #E5E0D8" }}>
+              <div key={i} style={{ position: "relative", borderRadius: "4px", overflow: "hidden", aspectRatio: "1", border: "2px solid #111111", boxShadow: "2px 2px 0px #111" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <button
                   onClick={() => removeImage(i)}
-                  style={{
-                    position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)",
-                    color: "#fff", border: "none", cursor: "pointer",
-                    fontSize: "16px", opacity: 0, transition: "opacity 0.15s ease",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}
+                  style={{ position: "absolute", inset: 0, background: "rgba(255,225,77,0.88)", color: "#111", border: "none", cursor: "pointer", fontSize: "16px", fontWeight: 800, opacity: 0, transition: "opacity 0.15s", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "inherit" }}
                   onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
                   onMouseLeave={(e) => (e.currentTarget.style.opacity = "0")}
-                >
-                  ✕
-                </button>
+                >✕</button>
               </div>
             ))}
           </div>

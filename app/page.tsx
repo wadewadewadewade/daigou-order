@@ -72,30 +72,43 @@ export default function Home() {
   };
 
   if (view === "landing") return <Landing onStart={startForm} />;
-  if (view === "success") return <StepSuccess onHome={() => setView("landing")} onAgain={() => { setOrder({ name: "", product: "", quantity: 1, imageUrls: [], productUrl: "" }); setStep(1); setView("form"); }} />;
+  if (view === "success") return (
+    <StepSuccess
+      onHome={() => setView("landing")}
+      onAgain={() => {
+        setOrder({ name: "", product: "", quantity: 1, imageUrls: [], productUrl: "" });
+        setStep(1);
+        setView("form");
+      }}
+    />
+  );
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "var(--bg)" }}>
-      <div className="w-full px-4 pt-6">
-        <div className="max-w-xl mx-auto flex items-center justify-between mb-1">
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#FFF9F0" }}>
+      <div style={{ width: "100%", padding: "20px 24px 0" }}>
+        <div style={{ maxWidth: "576px", margin: "0 auto" }}>
           <button
             onClick={() => setView("landing")}
-            style={{ fontSize: "13px", color: "var(--text-sub)", background: "none", border: "none", cursor: "pointer", padding: "4px 0" }}
+            style={{ fontSize: "13px", fontWeight: 600, color: "#555", background: "none", border: "none", cursor: "pointer", padding: "4px 0", fontFamily: "inherit" }}
           >
             ← 返回
           </button>
         </div>
       </div>
-      <ProgressBar current={step} total={TOTAL_STEPS} />
-      <div className="flex-1 flex items-center justify-center px-4 py-8">
+      <div style={{ padding: "16px 24px 0" }}>
+        <ProgressBar current={step} total={TOTAL_STEPS} />
+      </div>
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "16px 24px 48px" }}>
         <div
-          className="w-full max-w-xl"
           style={{
-            background: "var(--card)",
-            border: "1px solid var(--border)",
-            borderRadius: "16px",
-            padding: "40px 36px",
-            boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
+            width: "100%",
+            maxWidth: "560px",
+            background: "#FFFEF8",
+            border: "2px solid #111111",
+            borderRadius: "6px",
+            boxShadow: "4px 4px 0px #111111",
+            padding: "36px 32px",
+            transform: "rotate(-1deg)",
           }}
         >
           {step === 1 && <StepName value={order.name} onChange={(v) => update("name", v)} onNext={next} />}
