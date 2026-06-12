@@ -78,6 +78,7 @@ export const AnimatedInput = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           value={value}
           {...props}
+          placeholder=""
           style={{
             width: "100%",
             paddingTop: isFloating ? "20px" : "12px",
