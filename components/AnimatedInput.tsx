@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, forwardRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -10,69 +10,62 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
+const labelVariants = {
+  placeholder: {
+    y: "-50%",
+    top: "50%",
+    fontSize: "14px",
+    color: "#777777",
+    background: "transparent",
+    padding: "0 0",
+  },
+  floating: {
+    y: "-50%",
+    top: "0%",
+    fontSize: "10px",
+    color: "#888888",
+    background: "#EDE8DF",
+    padding: "0 4px",
+  },
+};
+
 export const AnimatedInput = forwardRef<HTMLInputElement, InputProps>(
   ({ label, className = "", value, onFocus, onBlur, style, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
     const isFloating = isFocused || value.length > 0;
 
     return (
-      <div className={cn("relative", className)} style={{ display: "block" }}>
-        {/* floating label */}
-        <AnimatePresence initial={false}>
-          {isFloating ? (
-            <motion.div
-              key="floating"
-              initial={{ y: 0, top: "50%", fontSize: "14px", color: "#777777", background: "transparent", padding: "0" }}
-              animate={{ y: "-50%", top: "0%", fontSize: "10px", color: "#888888", background: "#EDE8DF", padding: "0 4px" }}
-              exit={{ y: 0, top: "50%", fontSize: "14px", color: "#777777", background: "transparent", padding: "0" }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              style={{
-                position: "absolute",
-                left: "10px",
-                transformOrigin: "left center",
-                pointerEvents: "none",
-                fontWeight: 500,
-                zIndex: 1,
-                whiteSpace: "nowrap",
-                lineHeight: 1,
-              }}
-            >
-              {/* stagger per letter */}
-              {label.split("").map((char, i) => (
+      <div className={cn("relative", className)}>
+        <motion.div
+          initial="placeholder"
+          animate={isFloating ? "floating" : "placeholder"}
+          variants={labelVariants}
+          transition={{ type: "tween", duration: 0.18, ease: "easeInOut" }}
+          style={{
+            position: "absolute",
+            left: "12px",
+            pointerEvents: "none",
+            fontWeight: 500,
+            zIndex: 1,
+            whiteSpace: "nowrap",
+            lineHeight: 1,
+            transformOrigin: "left center",
+          }}
+        >
+          {isFloating
+            ? label.split("").map((char, i) => (
                 <motion.span
                   key={i}
-                  initial={{ opacity: 0, y: 4 }}
+                  initial={{ opacity: 0, y: 3 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.03, type: "spring", stiffness: 400, damping: 25 }}
+                  transition={{ delay: i * 0.025, duration: 0.12 }}
                   style={{ display: "inline-block" }}
                 >
                   {char === " " ? " " : char}
                 </motion.span>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="placeholder"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.1 }}
-              style={{
-                position: "absolute",
-                left: "12px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                fontSize: "14px",
-                color: "#777777",
-                fontWeight: 500,
-                pointerEvents: "none",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {label}
-            </motion.div>
-          )}
-        </AnimatePresence>
+              ))
+            : label}
+        </motion.div>
 
         <input
           ref={ref}
@@ -81,8 +74,8 @@ export const AnimatedInput = forwardRef<HTMLInputElement, InputProps>(
           placeholder=""
           style={{
             width: "100%",
-            paddingTop: isFloating ? "20px" : "12px",
-            paddingBottom: "12px",
+            paddingTop: "20px",
+            paddingBottom: "10px",
             paddingLeft: "14px",
             paddingRight: "14px",
             fontSize: "15px",
@@ -93,7 +86,7 @@ export const AnimatedInput = forwardRef<HTMLInputElement, InputProps>(
             background: "#EDE8DF",
             color: "#1a1a1a",
             fontFamily: "inherit",
-            transition: "box-shadow 0.1s ease, padding-top 0.15s ease",
+            transition: "box-shadow 0.1s ease",
             ...style,
           }}
           onFocus={(e) => {
